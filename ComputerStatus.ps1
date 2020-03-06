@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'SilentlyContinue'
 $Results = @()
-foreach ($computersystem in (Get-Content \\filserver\computerreporting\PC_info_check.txt)){
+foreach ($computersystem in (Get-Content '\\fileserver.cmpy.com\Logs$\TPMReport\PC_info_check.txt')){
     $computerinfo = get-wmiobject -computername $computersystem Win32_ComputerSystem -Authentication PacketPrivacy
     $computerBIOS = get-wmiobject -computername $computerSystem Win32_BIOS -Authentication PacketPrivacy
     $computerOS = get-wmiobject -computername $computerSystem Win32_OperatingSystem -Authentication PacketPrivacy
@@ -41,4 +41,4 @@ foreach ($computersystem in (Get-Content \\filserver\computerreporting\PC_info_c
     }
     $Results += $object
 }
-$results | export-csv \\filserver\computerreporting\TPMResults.csv -Append -notypeinformation
+$results | export-csv '\\fileserver.cmpy.com\Logs$\TPMReport\TPMResults.csv' -Append -notypeinformation
